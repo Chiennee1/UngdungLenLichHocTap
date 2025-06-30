@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "491464949759",
+    "project_id": "ungdunglichhoctap",
+    "storage_bucket": "ungdunglichhoctap.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491464949759:android:44d0d855e3b35959ceb1ca",
+        "android_client_info": {
+          "package_name": "com.example.ungdunglichhoctap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfSh83guTW1vPhBYdhwKF61PjP5ghInd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

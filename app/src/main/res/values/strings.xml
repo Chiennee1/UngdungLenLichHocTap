@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StudyMate</string>
+
+    <!-- Common -->
+    <string name="continue_btn">Tiếp tục</string>
+    <string name="or_text">hoặc</string>
+    <string name="google_signin">Đăng nhập với Google</string>
+    <string name="google_signup">Sử dụng tài khoản Google</string>
+
+    <!-- Sign Up -->
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="email_hint">email@gmail.com</string>
+    <string name="password_hint">Mật khẩu...</string>
+    <string name="use_email_signup">Sử dụng email để tạo tài khoản</string>
+    <string name="password_requirement">Nhập mật khẩu để đăng nhập</string>
+    <string name="password_rule">Ít nhất 8 ký tự</string>
+    <string name="password_rules_title">Mật khẩu phải có:</string>
+    <string name="terms_text">Bằng việc tiếp tục, bạn đồng ý với Điều khoản sử dụng của chúng tôi. Đọc chính sách bảo mật tại đây.</string>
+
+    <!-- Sign In -->
+    <string name="sign_in">Đăng nhập</string>
+    <string name="welcome_back">Chào mừng trở lại!</string>
+    <string name="sign_in_continue">Đăng nhập để tiếp tục</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Mật khẩu</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="no_account">Chưa có tài khoản? </string>
+    <string name="sign_up_now">Đăng ký ngay</string>
+</resources>
