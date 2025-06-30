@@ -30,7 +30,7 @@
             android:paddingTop="60dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Chào mùng quay lại!"
+            android:text="Chào mừng quay lại!"
             android:textSize="20sp"
             android:textColor="@color/text_primary" />
 

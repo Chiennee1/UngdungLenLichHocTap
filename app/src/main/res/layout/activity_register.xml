@@ -10,22 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="20dp"
+        android:gravity="center_horizontal">
 
         <!-- Header with back button -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="16dp">
 
-            <!-- Back Button - Dùng text thay icon -->
+            <!-- Back Button -->
             <androidx.cardview.widget.CardView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="3dp"
                 app:cardBackgroundColor="@color/background_white"
                 android:clickable="true"
                 android:focusable="true">
@@ -35,11 +36,10 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="←"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textColor="@color/primary_blue"
                     android:clickable="true"
                     android:focusable="true" />
-
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -48,162 +48,227 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Tạo tài khoản"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
-
         </RelativeLayout>
 
         <!-- Main Content Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="@color/background_white"
-            android:layout_marginBottom="24dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/background_white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="32dp"
-                android:gravity="center">
+                android:padding="20dp"
+                android:gravity="center_horizontal">
 
                 <!-- Logo Section -->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    app:cardCornerRadius="50dp"
-                    app:cardElevation="4dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="3dp"
                     app:cardBackgroundColor="@color/primary_blue_light"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="SM"
-                        android:textSize="32sp"
+                        android:textSize="22sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_white" />
-
                 </androidx.cardview.widget.CardView>
 
-                <!-- App Name -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Email Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="StudyMate"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_blue"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="12dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/primary_blue"
+                    app:boxStrokeWidth="1.5dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:hintTextColor="@color/text_hint"
+                    app:startIconTint="@color/primary_blue">
 
-                <!-- Subtitle -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tạo tài khoản"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginBottom="32dp" />
-
-                <!-- Password Description -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nhập mật khẩu để đăng nhập"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginBottom="24dp"
-                    android:gravity="center" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:textSize="15sp"
+                        android:textColor="@color/text_primary"
+                        android:padding="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Password Input -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginBottom="12dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeColor="@color/primary_blue"
-                    app:boxStrokeWidth="2dp"
+                    app:boxStrokeWidth="1.5dp"
                     app:boxCornerRadiusTopStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:hintTextColor="@color/text_hint"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/primary_blue">
+                    app:passwordToggleTint="@color/primary_blue"
+                    app:startIconTint="@color/primary_blue">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Mật khẩu..."
+                        android:hint="Mật khẩu"
                         android:inputType="textPassword"
-                        android:textSize="16sp"
+                        android:padding="14dp"
                         android:textColor="@color/text_primary"
-                        android:padding="16dp" />
-
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Password Requirements -->
-                <LinearLayout
+                <!-- Confirm Password Input -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/primary_blue"
+                    app:boxStrokeWidth="1.5dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:hintTextColor="@color/text_hint"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/primary_blue"
+                    app:startIconTint="@color/primary_blue">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mật khẩu phải có:"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginBottom="8dp" />
-
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etConfirmPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:hint="Nhập lại mật khẩu"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"
+                        android:textColor="@color/text_primary"
+                        android:padding="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Dùng text ✓ thay icon -->
-                        <TextView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:text="✓"
-                            android:textSize="12sp"
-                            android:textColor="@color/accent_green"
-                            android:gravity="center"
-                            android:layout_marginEnd="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ít nhất 8 ký tự"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- Continue Button -->
-                <Button
-                    android:id="@+id/btnContinue"
+                <!-- Simplified Password Requirements -->
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:text="Tiếp tục"
+                    android:layout_height="wrap_content"
+                    android:text="✓ Mật khẩu phải có ít nhất 8 ký tự"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp" />
+
+                <!-- Register Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Đăng ký"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_white"
                     android:backgroundTint="@color/primary_blue"
-                    app:cornerRadius="12dp" />
+                    app:cornerRadius="12dp"
+                    android:layout_marginBottom="16dp"
+                    app:elevation="2dp" />
 
+                <!-- Divider with OR -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/text_secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOẶC"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/text_secondary" />
+                </LinearLayout>
+
+                <!-- Google Sign Up Button -->
+                <Button
+                    android:id="@+id/btnGoogleSignIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="ĐĂNG KÝ BẰNG TÀI KHOẢN GOOGLE"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/logo_google"
+                    android:drawablePadding="8dp"
+                    android:paddingStart="16dp"
+                    android:gravity="center"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/border_light"
+                    app:strokeWidth="1dp"
+                    app:cornerRadius="10dp" />
+
+                <!-- Already have account link -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đã có tài khoản? "
+                        android:textSize="14sp"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:id="@+id/tvLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đăng nhập"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary_blue"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
-
 </ScrollView>
