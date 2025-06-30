@@ -10,7 +10,7 @@ public class User {
     private String ngaySinh;
     private String khoaVien;
     private String maSinhVien;
-    private boolean daXacThucEmail;
+    private boolean xacThucEmail;
 
     public User() {
     }
@@ -28,19 +28,17 @@ public class User {
         this.ngaySinh = ngaySinh;
         this.khoaVien = khoaVien;
         this.maSinhVien = maSinhVien;
-        this.daXacThucEmail = daXacThucEmail;
+        this.xacThucEmail = daXacThucEmail;
     }
 
-    // Constructor với thông tin cơ bản
     public User(String maUser, String email, String tenHienThi, String anhDaiDien) {
         this.maUser = maUser;
         this.email = email;
         this.tenHienThi = tenHienThi;
         this.anhDaiDien = anhDaiDien;
-        this.daXacThucEmail = false;
+        this.xacThucEmail = false;
     }
 
-    // Getters và Setters
     public String getMaUser() {
         return maUser;
     }
@@ -114,11 +112,11 @@ public class User {
     }
 
     public boolean isDaXacThucEmail() {
-        return daXacThucEmail;
+        return xacThucEmail;
     }
 
     public void setDaXacThucEmail(boolean daXacThucEmail) {
-        this.daXacThucEmail = daXacThucEmail;
+        this.xacThucEmail = daXacThucEmail;
     }
 
     @Override
