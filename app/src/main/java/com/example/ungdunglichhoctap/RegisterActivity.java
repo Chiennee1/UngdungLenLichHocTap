@@ -19,6 +19,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button btnDangKy, btnGoogleSignUp;
@@ -81,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
+                        saveUserForFirebase(user);
                         Toast.makeText(RegisterActivity.this, "Đăng ký thành công với Google", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterActivity.this, SiginActivity.class);
                         intent.putExtra("email", user.getEmail());
@@ -101,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (isValidEmail(email)) {
+        if (!isValidEmail(email)) {
             edtEmail.setError("Vui lòng nhập email hợp lệ");
             edtEmail.requestFocus();
             return;
@@ -124,8 +127,9 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     btnDangKy.setEnabled(true);
                     if (task.isSuccessful()) {
-                        Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
+                        saveUserForFirebase(user);
+                        Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterActivity.this, SiginActivity.class);
                         intent.putExtra("email", email);
                         intent.putExtra("password", password);
@@ -145,6 +149,26 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private boolean isValidEmail(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    private void saveUserForFirebase(FirebaseUser userFirebase) {
+        if(userFirebase != null){
+            String userId = userFirebase.getUid();
+            String email = userFirebase.getEmail();
+            String displayName = userFirebase.getDisplayName();
+            if(displayName == null || displayName.isEmpty()) {
+                displayName = email != null ? email.split("@")[0] : "User";
+            }
+            String photoUrl = userFirebase.getPhotoUrl() != null ?
+                    userFirebase.getPhotoUrl().toString() : "";
+            User user = new User(userId, email, displayName, photoUrl);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference userRef = database.getReference("users").child(displayName);
+                    userRef.setValue(user).addOnSuccessListener(aVoid -> {
+                        Log.d("RegisterActivity", "User saved successfully");
+                    }).addOnFailureListener(e -> {
+                        Log.e("RegisterActivity", "Failed to save user: " + e.getMessage());
+                    });
+        }
     }
 
 }
