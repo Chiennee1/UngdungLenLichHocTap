@@ -164,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userFirebase.getPhotoUrl().toString() : "";
             User user = new User(userId, email, displayName, photoUrl);
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference userRef = database.getReference("users").child(displayName);
+            DatabaseReference userRef = database.getReference("users").child(userId);
                     userRef.setValue(user).addOnSuccessListener(aVoid -> {
                         Log.d("RegisterActivity", "User saved successfully");
                     }).addOnFailureListener(e -> {

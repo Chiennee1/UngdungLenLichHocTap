@@ -44,6 +44,7 @@
                     android:textColor="@color/text_primary" />
 
                 <TextView
+                    android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Today's Date: May 28 2025"
@@ -146,6 +147,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/tvTaskProgress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="3/5"
@@ -432,6 +434,7 @@
                         </LinearLayout>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/checkboxTask1"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             app:cardCornerRadius="4dp"
@@ -439,6 +442,7 @@
                             app:cardBackgroundColor="@color/border_light">
 
                             <TextView
+                                android:id="@+id/checkmarkText"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -492,6 +496,7 @@
                         </LinearLayout>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/checkboxTask2"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             app:cardCornerRadius="4dp"
@@ -499,6 +504,7 @@
                             app:cardBackgroundColor="@color/border_light">
 
                             <TextView
+                                android:id="@+id/checkmarkText"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -575,6 +581,7 @@
 
                         <!-- Time Display -->
                         <TextView
+                            android:id="@+id/tvTimerDisplay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25:00"
@@ -625,6 +632,7 @@
 
         <!-- Home -->
         <LinearLayout
+            android:id="@+id/navHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -653,6 +661,7 @@
 
         <!-- Tasks -->
         <LinearLayout
+            android:id="@+id/navTasks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -680,6 +689,7 @@
 
         <!-- Timer -->
         <LinearLayout
+            android:id="@+id/navTimer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -707,6 +717,7 @@
 
         <!-- Add -->
         <LinearLayout
+            android:id="@+id/navAdd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

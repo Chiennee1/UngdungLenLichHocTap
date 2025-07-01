@@ -30,7 +30,6 @@ public class Task {
         danhSachNguoiThucHien = new HashMap<>();
         this.thoiGianTao = System.currentTimeMillis();
     }
-
     public Task(String tieuDe, String moTa, long hanChot, String mucDoUuTien, String maNguoiTao) {
         this.tieuDe = tieuDe;
         this.moTa = moTa;
