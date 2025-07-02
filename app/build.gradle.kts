@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.constraintlayout)
 
     // Firebase BoM (Bill of Materials)
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth")
