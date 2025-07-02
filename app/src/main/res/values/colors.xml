@@ -16,6 +16,7 @@
     <color name="background_white">#FFFFFF</color>
     <color name="background_light_gray">#F8F9FA</color>
     <color name="background_card">#FFFFFF</color>
+    <color name="background_light">#F8F9FA</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#2C3E50</color>
@@ -33,5 +34,7 @@
     <color name="button_google">#4285F4</color>
     <color name="accent_red_light">#FFEBEE</color>
     <color name="accent_purple_light">#F3E5F5</color>
-
+    <color name="accent_gold">#FFD700</color>
+    <color name="accent_silver">#C0C0C0</color>
+    <color name="accent_bronze">#CD7F32</color>
 </resources>
