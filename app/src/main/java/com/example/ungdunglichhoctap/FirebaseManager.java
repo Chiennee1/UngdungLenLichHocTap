@@ -1,5 +1,7 @@
 package com.example.ungdunglichhoctap;
 
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,11 +15,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import DoiTuong.User;
-
+import DoiTuong.Lessons;
+import DoiTuong.Subject;
+import DoiTuong.Task;
 public class FirebaseManager {
     private static final String TAG = "FirebaseManager";
+    public static final String DATA_TYPE_TASKS = "tasks";
+    public static final String DATA_TYPE_LESSONS = "lessons";
+    public static final String DATA_TYPE_SUBJECTS = "subjects";
+    public static final String DATA_TYPE_PROMODOTIME = "promodotime";
+    private Button btnDangKy, btnGoogleSignUp;
     private final DatabaseReference databaseReference;
     private final FirebaseAuth mAuth;
     private final String userId;
@@ -255,5 +263,25 @@ public class FirebaseManager {
                         callback.onError("Lỗi khi đọc dữ liệu: " + error.getMessage());
                     }
                 });
+    }
+    public void createTask(Task task, DatabaseCallback<String> callback) {
+        createUserData(DATA_TYPE_TASKS, task, callback);
+    }
+
+    public void createLesson(Lessons lesson, DatabaseCallback<String> callback) {
+        createUserData(DATA_TYPE_LESSONS, lesson, callback);
+    }
+
+    public void createSubject(Subject subject, DatabaseCallback<String> callback) {
+        createUserData(DATA_TYPE_SUBJECTS, subject, callback);
+    }
+
+    // Tương tự cho read, update, delete
+    public void getTasks(DatabaseCallback<List<Task>> callback) {
+        getUserData(DATA_TYPE_TASKS, Task.class, callback);
+    }
+
+    public void getLessons(DatabaseCallback<List<Lessons>> callback) {
+        getUserData(DATA_TYPE_LESSONS, Lessons.class, callback);
     }
 }

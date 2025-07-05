@@ -1,5 +1,6 @@
 package com.example.ungdunglichhoctap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -10,17 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,11 +24,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import DoiTuong.Lesson;
+import DoiTuong.Lessons;
 import DoiTuong.Task;
 import DoiTuong.User;
-import DoiTuong.PomodoroSession;
-import DoiTuong.Subject;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -67,10 +61,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void loadTodayLessons() {
         long startOfDay = getStartOfDay();
         long endOfDay = getEndOfDay();
-        firebaseManager.queryUserDataByTimeRange("lessons","thoiGianBatDau", startOfDay, endOfDay,Lesson.class,
-                new FirebaseManager.DatabaseCallback<List<Lesson>>() {
+        firebaseManager.queryUserDataByTimeRange("lessons","thoiGianBatDau", startOfDay, endOfDay, Lessons.class,
+                new FirebaseManager.DatabaseCallback<List<Lessons>>() {
                     @Override
-                    public void onSucces(List<Lesson> dataResult) {
+                    public void onSucces(List<Lessons> dataResult) {
                         Log.d("DashboardActivity", "Today Lessons: " + dataResult.size() + " lessons.");
                     }
                     @Override
@@ -142,7 +136,6 @@ public class DashboardActivity extends AppCompatActivity {
         CardView checkboxTask1 = findViewById(R.id.checkboxTask1);
         CardView checkboxTask2 = findViewById(R.id.checkboxTask2);
     }
-
     private void displayCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd yyyy", Locale.getDefault());
         String currentDate = dateFormat.format(new Date());
@@ -187,9 +180,9 @@ public class DashboardActivity extends AppCompatActivity {
         navAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "Thêm hoạt động mới", Toast.LENGTH_SHORT).show();
-                // TODO: Implement add activity dialog or screen
-            }
+               Intent intent = new Intent (DashboardActivity.this, AddTaskActivity.class);
+                startActivity(intent);
+                }
         });
 
         // Task checkbox clicks
@@ -250,7 +243,6 @@ public class DashboardActivity extends AppCompatActivity {
             updateTaskProgress();
         }
     }
-
     private void updateTaskProgress() {
         int totalTasks = 5;
         int completedTasks = 0;

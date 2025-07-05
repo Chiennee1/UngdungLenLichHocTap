@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import DoiTuong.User;
 
 public class RegisterActivity extends AppCompatActivity {
+
     private Button btnDangKy, btnGoogleSignUp;
     private EditText edtEmail, edtPassword, edtConfirmPassword;
     TextView txtDangNhap;

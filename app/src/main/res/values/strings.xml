@@ -27,4 +27,35 @@
     <string name="forgot_password">Quên mật khẩu?</string>
     <string name="no_account">Chưa có tài khoản? </string>
     <string name="sign_up_now">Đăng ký ngay</string>
+
+    <!-- Settings Screen -->
+    <string name="back_arrow">←</string>
+    <string name="settings_title">CÀI ĐẶT</string>
+    <string name="app_settings">Cài đặt ứng dụng</string>
+    <string name="notification_icon">🔔</string>
+    <string name="notification_settings">Cài đặt thông báo</string>
+    <string name="notification_desc">Quản lý thông báo push, nhắc nhở</string>
+    <string name="next_arrow">></string>
+    <string name="theme_icon">🎨</string>
+    <string name="theme_settings">Chủ đề ứng dụng</string>
+    <string name="theme_desc">Sáng, tối, tự động theo hệ thống</string>
+    <string name="light_theme">Sáng</string>
+    <string name="alarm_icon">⏰</string>
+    <string name="reminder_settings">Thời gian nhắc nhở mặc định</string>
+    <string name="reminder_desc">Thời gian nhắc trước khi nhiệm vụ hết hạn</string>
+    <string name="fifteen_minutes">15 phút</string>
+    <string name="app_info">Thông tin ứng dụng</string>
+    <string name="info_icon">ℹ️</string>
+    <string name="about_app">Giới thiệu về ứng dụng</string>
+    <string name="app_version">Phiên bản 1.0.0 - StudyMate Team</string>
+    <string name="cloud_icon">☁️</string>
+    <string name="backup_restore">Sao lưu &amp; Khôi phục</string>
+    <string name="backup_desc">Đồng bộ dữ liệu lên cloud</string>
+    <string name="connected">Đã kết nối</string>
+    <string name="account">Tài khoản</string>
+    <string name="door_icon">🚪</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="logout_account">Thoát khỏi tài khoản Chiennee1</string>
+    <string name="app_version_footer">StudyMate v1.0.0</string>
+    <string name="app_copyright">Build 2025.07.02 - © StudyMate Team</string>
 </resources>
