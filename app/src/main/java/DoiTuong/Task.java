@@ -4,8 +4,6 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @IgnoreExtraProperties
 public class Task {
@@ -14,34 +12,30 @@ public class Task {
 
     public String tieuDe;
     public String moTa;
-    public long hanChot; // Hạn chót (timestamp)
+    public long hanChot;
     public String mucDoUuTien;
     public boolean daHoanThanh;
     public String maMonHoc;
-    public String maBuoiHoc;
-    public String maNguoiTao;
-    public Map<String, Boolean> danhSachNguoiThucHien;
     public long thoiGianTao;
     public long thoiGianHoanThanh;
-    public long thoiGianNhacNho;
+    public String hinhAnh;
 
     public Task() {
-        // Constructor mặc định cần thiết cho Firebase
-        danhSachNguoiThucHien = new HashMap<>();
         this.thoiGianTao = System.currentTimeMillis();
+        this.daHoanThanh = false;
     }
-    public Task(String tieuDe, String moTa, long hanChot, String mucDoUuTien, String maNguoiTao) {
+
+    public Task(String tieuDe, String moTa, long hanChot, String mucDoUuTien, String maMonHoc) {
         this.tieuDe = tieuDe;
         this.moTa = moTa;
         this.hanChot = hanChot;
         this.mucDoUuTien = mucDoUuTien;
-        this.maNguoiTao = maNguoiTao;
+        this.maMonHoc = maMonHoc;
         this.daHoanThanh = false;
-        this.danhSachNguoiThucHien = new HashMap<>();
         this.thoiGianTao = System.currentTimeMillis();
-        this.danhSachNguoiThucHien.put(maNguoiTao, true); // Tự động thêm người tạo vào danh sách người được giao
     }
 
+    // Getters and Setters
     @Exclude
     public String getMaNhiemVu() {
         return maNhiemVu;
@@ -89,11 +83,6 @@ public class Task {
 
     public void setDaHoanThanh(boolean daHoanThanh) {
         this.daHoanThanh = daHoanThanh;
-        if (daHoanThanh) {
-            this.thoiGianHoanThanh = System.currentTimeMillis();
-        } else {
-            this.thoiGianHoanThanh = 0;
-        }
     }
 
     public String getMaMonHoc() {
@@ -102,43 +91,6 @@ public class Task {
 
     public void setMaMonHoc(String maMonHoc) {
         this.maMonHoc = maMonHoc;
-    }
-
-    public String getMaBuoiHoc() {
-        return maBuoiHoc;
-    }
-
-    public void setMaBuoiHoc(String maBuoiHoc) {
-        this.maBuoiHoc = maBuoiHoc;
-    }
-
-    public String getMaNguoiTao() {
-        return maNguoiTao;
-    }
-
-    public void setMaNguoiTao(String maNguoiTao) {
-        this.maNguoiTao = maNguoiTao;
-    }
-
-    public Map<String, Boolean> getDanhSachNguoiThucHien() {
-        return danhSachNguoiThucHien;
-    }
-
-    public void setDanhSachNguoiThucHien(Map<String, Boolean> danhSachNguoiThucHien) {
-        this.danhSachNguoiThucHien = danhSachNguoiThucHien;
-    }
-
-    public void themNguoiThucHien(String maUser) {
-        if (danhSachNguoiThucHien == null) {
-            danhSachNguoiThucHien = new HashMap<>();
-        }
-        danhSachNguoiThucHien.put(maUser, true);
-    }
-
-    public void xoaNguoiThucHien(String maUser) {
-        if (danhSachNguoiThucHien != null) {
-            danhSachNguoiThucHien.remove(maUser);
-        }
     }
 
     public long getThoiGianTao() {
@@ -157,24 +109,22 @@ public class Task {
         this.thoiGianHoanThanh = thoiGianHoanThanh;
     }
 
-    public long getThoiGianNhacNho() {
-        return thoiGianNhacNho;
+    public String getHinhAnh() {
+        return hinhAnh;
     }
 
-    public void setThoiGianNhacNho(long thoiGianNhacNho) {
-        this.thoiGianNhacNho = thoiGianNhacNho;
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
     }
 
+    @Exclude
+    public boolean isQuaHan() {
+        return !daHoanThanh && System.currentTimeMillis() > hanChot;
+    }
     @Exclude
     public Date getNgayHanChot() {
         return new Date(hanChot);
     }
-
-    @Exclude
-    public boolean daQuaHan() {
-        return !daHoanThanh && System.currentTimeMillis() > hanChot;
-    }
-
     @Override
     public String toString() {
         return "Task{" +
