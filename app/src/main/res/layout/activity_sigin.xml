@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@drawable/login_background_gradient">
 
-    <!-- Header Section - Compact -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +24,7 @@
             android:textStyle="bold"
             android:textColor="@color/text_primary" />
     </RelativeLayout>
-    <!-- Main Content - Scrollable với compact design -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -40,7 +39,6 @@
             android:paddingBottom="20dp"
             android:gravity="center">
 
-            <!-- Main Content Card - Compact -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +53,6 @@
                     android:padding="24dp"
                     android:gravity="center">
 
-                    <!-- Logo Section - Smaller -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
@@ -75,7 +72,6 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <!-- App Name - Smaller -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -85,7 +81,6 @@
                         android:textColor="@color/primary_blue"
                         android:layout_marginBottom="4dp" />
 
-                    <!-- Subtitle - Smaller -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -94,7 +89,6 @@
                         android:textColor="@color/text_secondary"
                         android:layout_marginBottom="2dp" />
 
-                    <!-- Description - Smaller -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,7 +98,6 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center" />
 
-                    <!-- Email Input - Compact -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -130,7 +123,6 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Password Input - Compact -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -158,7 +150,6 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Forgot Password - Compact -->
                     <TextView
                         android:id="@+id/tvForgotPassword"
                         android:layout_width="wrap_content"
@@ -173,7 +164,6 @@
                         android:focusable="true"
                         android:padding="4dp" />
 
-                    <!-- Sign In Button - Compact -->
                     <Button
                         android:id="@+id/btnSignIn"
                         android:layout_width="match_parent"
@@ -186,7 +176,6 @@
                         app:cornerRadius="10dp"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- Divider with "hoặc" - Compact -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -216,7 +205,6 @@
 
                     </LinearLayout>
 
-                    <!-- Google Sign In Button - Compact -->
                     <Button
                         android:id="@+id/btnGoogleSignIn"
                         android:layout_width="match_parent"
@@ -233,7 +221,7 @@
                         app:strokeColor="@color/border_light"
                         app:strokeWidth="1dp"
                         app:cornerRadius="10dp" />
-                    <!-- Sign Up Link - Compact -->
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

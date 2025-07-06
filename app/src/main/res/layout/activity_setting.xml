@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@color/background_light">
 
-    <!-- Header Section -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +15,6 @@
         android:paddingBottom="16dp"
         android:elevation="2dp">
 
-        <!-- Back Button -->
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="32dp"
@@ -33,7 +31,6 @@
             android:focusable="true"
             android:elevation="1dp" />
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +44,6 @@
 
     </RelativeLayout>
 
-    <!-- Main Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,7 +58,6 @@
             android:paddingTop="24dp"
             android:paddingBottom="32dp">
 
-            <!-- Section 1: Cài đặt ứng dụng -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Cài đặt thông báo -->
                     <LinearLayout
                         android:id="@+id/layoutNotificationSettings"
                         android:layout_width="match_parent"
@@ -148,7 +142,6 @@
 
                     </LinearLayout>
 
-                    <!-- Divider -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -156,7 +149,6 @@
                         android:layout_marginStart="76dp"
                         android:layout_marginEnd="20dp" />
 
-                    <!-- Chủ đề ứng dụng -->
                     <LinearLayout
                         android:id="@+id/layoutThemeSettings"
                         android:layout_width="match_parent"
@@ -226,7 +218,6 @@
 
                     </LinearLayout>
 
-                    <!-- Divider -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -234,7 +225,6 @@
                         android:layout_marginStart="76dp"
                         android:layout_marginEnd="20dp" />
 
-                    <!-- Thời gian nhắc nhở mặc định -->
                     <LinearLayout
                         android:id="@+id/layoutReminderSettings"
                         android:layout_width="match_parent"
@@ -308,7 +298,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Section 2: Thông tin ứng dụng -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -332,7 +321,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Giới thiệu về ứng dụng -->
                     <LinearLayout
                         android:id="@+id/layoutAboutApp"
                         android:layout_width="match_parent"
@@ -400,7 +388,6 @@
                         android:layout_marginStart="76dp"
                         android:layout_marginEnd="20dp" />
 
-                    <!-- Sao lưu & Khôi phục -->
                     <LinearLayout
                         android:id="@+id/layoutBackupRestore"
                         android:layout_width="match_parent"
@@ -485,7 +472,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Section 3: Tài khoản -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -504,7 +490,6 @@
                 app:cardBackgroundColor="@color/background_white"
                 android:layout_marginBottom="24dp">
 
-                <!-- Đăng xuất -->
                 <LinearLayout
                     android:id="@+id/layoutLogout"
                     android:layout_width="match_parent"

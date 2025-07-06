@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@color/background_light">
 
-    <!-- Header Section -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +15,6 @@
         android:paddingBottom="16dp"
         android:elevation="2dp">
 
-        <!-- Back Button -->
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="32dp"
@@ -33,7 +31,6 @@
             android:focusable="true"
             android:elevation="1dp" />
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +42,6 @@
             android:textColor="@color/text_primary"
             android:letterSpacing="0.05" />
 
-        <!-- Settings Button -->
         <TextView
             android:id="@+id/btnSettings"
             android:layout_width="32dp"
@@ -62,7 +58,6 @@
 
     </RelativeLayout>
 
-    <!-- Main Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -123,7 +118,6 @@
 
                 </FrameLayout>
 
-                <!-- User Name -->
                 <TextView
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
@@ -134,7 +128,6 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="4dp" />
 
-                <!-- Last Active Status -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -142,7 +135,6 @@
                     android:textSize="12sp"
                     android:textColor="@color/text_secondary" />
 
-                <!-- Edit Profile Button -->
                 <Button
                     android:id="@+id/btnEditProfile"
                     android:layout_width="wrap_content"
@@ -160,7 +152,6 @@
 
             </LinearLayout>
 
-            <!-- Personal Information Section -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,7 +166,6 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <!-- Section Title -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -206,7 +196,6 @@
 
                     </LinearLayout>
 
-                    <!-- Full Name -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -231,7 +220,6 @@
 
                     </LinearLayout>
 
-                    <!-- Email -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -256,7 +244,6 @@
 
                     </LinearLayout>
 
-                    <!-- Student ID -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -281,7 +268,6 @@
 
                     </LinearLayout>
 
-                    <!-- School -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -306,7 +292,6 @@
 
                     </LinearLayout>
 
-                    <!-- Major -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -334,7 +319,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Study Statistics Section -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -350,7 +334,6 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <!-- Section Title -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -361,14 +344,12 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <!-- Study Stats Row 1 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:orientation="horizontal">
 
-                        <!-- Total Study Time -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -412,7 +393,6 @@
 
                         </LinearLayout>
 
-                        <!-- Pomodoro Sessions -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -458,13 +438,11 @@
 
                     </LinearLayout>
 
-                    <!-- Study Stats Row 2 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <!-- Completed Tasks -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -508,7 +486,6 @@
 
                         </LinearLayout>
 
-                        <!-- Study Streak -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -558,7 +535,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Weekly Activity Chart -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -574,7 +550,6 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <!-- Section Title -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -584,14 +559,12 @@
                         android:textColor="@color/text_primary"
                         android:layout_marginBottom="16dp" />
 
-                    <!-- Activity Chart -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:orientation="horizontal"
                         android:baselineAligned="false">
 
-                        <!-- Day Bars -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -808,7 +781,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Achievement Badges -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -824,7 +796,6 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <!-- Section Title and View All -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -855,14 +826,12 @@
 
                     </LinearLayout>
 
-                    <!-- Badges Grid -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="4">
 
-                        <!-- Badge 1 -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -931,7 +900,6 @@
 
                         </LinearLayout>
 
-                        <!-- Badge 3 -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -966,7 +934,6 @@
 
                         </LinearLayout>
 
-                        <!-- Badge 4 -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -1007,7 +974,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Account Actions -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1022,7 +988,6 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Logout Button -->
                     <LinearLayout
                         android:id="@+id/btnLogout"
                         android:layout_width="match_parent"
@@ -1055,7 +1020,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Version Info -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
