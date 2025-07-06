@@ -284,4 +284,25 @@ public class FirebaseManager {
     public void getLessons(DatabaseCallback<List<Lessons>> callback) {
         getUserData(DATA_TYPE_LESSONS, Lessons.class, callback);
     }
+    public void getSubjects(DatabaseCallback<List<Subject>> callback) {
+        getUserData(DATA_TYPE_SUBJECTS, Subject.class, callback);
+    }
+    public void updateTask(String taskId, Task task, DatabaseCallback<Task> callback) {
+        updateUserData(DATA_TYPE_TASKS, taskId, task, callback);
+    }
+    public void updateLesson(String lessonId, Lessons lesson, DatabaseCallback<Lessons> callback) {
+        updateUserData(DATA_TYPE_LESSONS, lessonId, lesson, callback);
+    }
+    public void updateSubject(String subjectId, Subject subject, DatabaseCallback<Subject> callback) {
+        updateUserData(DATA_TYPE_SUBJECTS, subjectId, subject, callback);
+    }
+    public void deleteTask(String taskId, DatabaseCallback<Boolean> callback) {
+        deleteData(DATA_TYPE_TASKS, taskId, callback);
+    }
+    public void deleteLesson(String lessonId, DatabaseCallback<Boolean> callback) {
+        deleteData(DATA_TYPE_LESSONS, lessonId, callback);
+    }
+    public void deleteSubject(String subjectId, DatabaseCallback<Boolean> callback) {
+        deleteData(DATA_TYPE_SUBJECTS, subjectId, callback);
+    }
 }

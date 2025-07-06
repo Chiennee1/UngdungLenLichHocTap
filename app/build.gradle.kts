@@ -47,8 +47,12 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     // Firebase Realtime Database
     implementation("com.google.firebase:firebase-database")
+    // Firebase Storage
+    implementation("com.google.firebase:firebase-storage")
     // Google Play services for Google Sign-In
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    // Picasso for image loading
+    implementation("com.squareup.picasso:picasso:2.8")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

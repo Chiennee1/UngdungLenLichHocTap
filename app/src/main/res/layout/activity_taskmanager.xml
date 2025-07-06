@@ -810,7 +810,6 @@
 
         </LinearLayout>
 
-        <!-- Nhiệm vụ (Active) -->
         <LinearLayout
             android:id="@+id/navTasks"
             android:layout_width="0dp"

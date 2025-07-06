@@ -4,33 +4,30 @@ public class User {
     private String maUser;
     private String email;
     private String tenHienThi;
-    private String soDienThoai;
     private String anhDaiDien;
-    private String tieySu;
-    private String ngaySinh;
-    private String khoaVien;
     private String maSinhVien;
     private boolean xacThucEmail;
-
+    private String hoTen;
+    private String nganh;
+    private String khoaVien;
     public User() {
     }
 
-    // Constructor
-    public User(String maUser, String email, String tenHienThi, String soDienThoai,
-                String anhDaiDien, String tieySu, String ngaySinh, String khoaVien,
-                String maSinhVien, boolean daXacThucEmail) {
+    public User(String maUser, String email, String tenHienThi,
+                String anhDaiDien, String maSinhVien, boolean daXacThucEmail,
+                String hoTen, String nganh, String khoaVien) {
         this.maUser = maUser;
         this.email = email;
         this.tenHienThi = tenHienThi;
-        this.soDienThoai = soDienThoai;
         this.anhDaiDien = anhDaiDien;
-        this.tieySu = tieySu;
-        this.ngaySinh = ngaySinh;
-        this.khoaVien = khoaVien;
         this.maSinhVien = maSinhVien;
         this.xacThucEmail = daXacThucEmail;
+        this.hoTen = hoTen;
+        this.nganh = nganh;
+        this.khoaVien = khoaVien;
     }
 
+    // Constructor rút gọn cho đăng ký nhanh
     public User(String maUser, String email, String tenHienThi, String anhDaiDien) {
         this.maUser = maUser;
         this.email = email;
@@ -39,6 +36,7 @@ public class User {
         this.xacThucEmail = false;
     }
 
+    // Các getter và setter
     public String getMaUser() {
         return maUser;
     }
@@ -63,36 +61,12 @@ public class User {
         this.tenHienThi = tenHienThi;
     }
 
-    public String getSoDienThoai() {
-        return soDienThoai;
-    }
-
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
-    }
-
     public String getAnhDaiDien() {
         return anhDaiDien;
     }
 
     public void setAnhDaiDien(String anhDaiDien) {
         this.anhDaiDien = anhDaiDien;
-    }
-
-    public String getTieySu() {
-        return tieySu;
-    }
-
-    public void setTieySu(String tieySu) {
-        this.tieySu = tieySu;
-    }
-
-    public String getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
     }
 
     public String getKhoaVien() {
@@ -119,16 +93,34 @@ public class User {
         this.xacThucEmail = daXacThucEmail;
     }
 
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getNganh() {
+        return nganh;
+    }
+
+    public void setNganh(String nganh) {
+        this.nganh = nganh;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "maUser='" + maUser + '\'' +
                 ", email='" + email + '\'' +
                 ", tenHienThi='" + tenHienThi + '\'' +
-                ", soDienThoai='" + soDienThoai + '\'' +
+                ", hoTen='" + hoTen + '\'' +
                 ", anhDaiDien='" + anhDaiDien + '\'' +
-                ", khoaVien='" + khoaVien + '\'' +
                 ", maSinhVien='" + maSinhVien + '\'' +
+                ", khoaVien='" + khoaVien + '\'' +
+                ", nganh='" + nganh + '\'' +
+                ", xacThucEmail=" + xacThucEmail +
                 '}';
     }
 }
