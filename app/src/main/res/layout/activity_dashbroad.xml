@@ -22,7 +22,6 @@
         android:paddingBottom="16dp"
         android:elevation="2dp">
 
-        <!-- Welcome Section -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -56,6 +55,7 @@
 
             <!-- Menu Icon -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/menuIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
@@ -64,7 +64,8 @@
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/background_light_gray"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -174,8 +175,8 @@
 
             </LinearLayout>
 
-            <!-- Lớp học hôm nay Section -->
             <LinearLayout
+                android:id="@+id/container_lessons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -200,6 +201,7 @@
                     app:cardBackgroundColor="@color/background_white">
 
                     <LinearLayout
+                        android:id="@+id/lesson_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -207,12 +209,14 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
+                            android:id="@+id/lesson_info"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/lesson_title_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Giải tích"
@@ -221,6 +225,7 @@
                                 android:textColor="@color/text_primary" />
 
                             <TextView
+                                android:id="@+id/lesson_time_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="10:00 AM"
@@ -238,6 +243,7 @@
                             app:cardBackgroundColor="@color/primary_blue_light">
 
                             <TextView
+                                android:id="@+id/lesson_room_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -262,6 +268,7 @@
                     app:cardBackgroundColor="@color/background_white">
 
                     <LinearLayout
+                        android:id="@+id/lesson_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -269,12 +276,14 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
+                            android:id="@+id/lesson_info"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/lesson_title_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lập trình Mobile"
@@ -283,6 +292,7 @@
                                 android:textColor="@color/text_primary" />
 
                             <TextView
+                                android:id="@+id/lesson_time_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="12:00 PM"
@@ -300,6 +310,7 @@
                             app:cardBackgroundColor="@color/accent_green_light">
 
                             <TextView
+                                android:id="@+id/lesson_room_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -323,6 +334,7 @@
                     app:cardBackgroundColor="@color/background_white">
 
                     <LinearLayout
+                        android:id="@+id/lesson_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -330,12 +342,14 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
+                            android:id="@+id/lesson_info"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/lesson_title_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Quản trị mạng"
@@ -344,6 +358,7 @@
                                 android:textColor="@color/text_primary" />
 
                             <TextView
+                                android:id="@+id/lesson_time_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2:30 PM"
@@ -361,6 +376,7 @@
                             app:cardBackgroundColor="@color/accent_orange_light">
 
                             <TextView
+                                android:id="@+id/lesson_room_3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -377,8 +393,8 @@
 
             </LinearLayout>
 
-            <!-- Nhiệm vụ gần nhất Section -->
             <LinearLayout
+                android:id="@+id/container_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -410,12 +426,14 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
+                            android:id="@+id/layout_weight_1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/task_title_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Submit Essay"
@@ -424,6 +442,7 @@
                                 android:textColor="@color/text_primary" />
 
                             <TextView
+                                android:id="@+id/task_due_date_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Due: October 12"
@@ -472,12 +491,14 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
+                            android:id="@+id/layout_weight_1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/task_title_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Group Project"
@@ -486,6 +507,7 @@
                                 android:textColor="@color/text_primary" />
 
                             <TextView
+                                android:id="@+id/task_due_date_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Due: October 15"
