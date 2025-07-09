@@ -355,7 +355,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Privacy Policy -->
             <LinearLayout
                 android:id="@+id/privacyPolicySection"
                 android:layout_width="match_parent"
@@ -558,11 +557,11 @@
             android:id="@+id/btnReturn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:backgroundTint="@color/primary_blue"
             android:text="Quay lại"
+            android:textColor="@color/text_white"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/text_white"
-            android:backgroundTint="@color/primary_blue"
             app:cornerRadius="12dp" />
 
     </LinearLayout>
