@@ -38,7 +38,7 @@ public class SiginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sigin);
         findViews();
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();// Nhận dữ liệu từ Intent nếu có
+        Intent intent = getIntent();
         if (intent != null) {
            Bundle bundle = intent.getExtras();
             if (bundle != null) {
@@ -90,7 +90,6 @@ public class SiginActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
-            // Kết quả đăng nhập Google sau khi chay signInIntent
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);

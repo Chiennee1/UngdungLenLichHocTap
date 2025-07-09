@@ -2,6 +2,7 @@ package com.example.ungdunglichhoctap;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -30,12 +31,9 @@ import DoiTuong.Task;
 import DoiTuong.User;
 
 public class DashboardActivity extends AppCompatActivity {
-    // Khai báo các biến cho task
     private TextView tvTaskTitle1, tvTaskDueDate1;
     private TextView tvTaskTitle2, tvTaskDueDate2;
     private TextView tvTaskProgress;
-
-    // Khai báo các biến cho lessons
     private TextView tvLessonTitle1, tvLessonTime1, tvLessonRoom1;
     private TextView tvLessonTitle2, tvLessonTime2, tvLessonRoom2;
     private TextView tvLessonTitle3, tvLessonTime3, tvLessonRoom3;
@@ -45,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView tvTimerDisplay;
     private Button btnStartTimer;
     private ProgressBar progressBar;
-    private LinearLayout navHome, navTasks, navTimer, navAdd;
+    private LinearLayout navSetting, navTasks, navTimer, navLichHoc;
     private CountDownTimer countDownTimer;
     private boolean timerRunning = false;
     private long timeLeftInMillis = 25 * 60 * 1000;
@@ -64,11 +62,31 @@ public class DashboardActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         initViews();
+        applyTheme();
         loadUserData();
         loadTodayTasks();
         loadTodayLessons();
         displayCurrentDate();
         setupClickListeners();
+    }
+
+    private void applyTheme() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_setting", MODE_PRIVATE);
+        String theme = sharedPreferences.getString("theme", "Light");
+        switch (theme){
+            case "Light":
+                getWindow().getDecorView().setBackgroundColor(getResources().
+                        getColor(R.color.background_light));
+                break;
+            case "Dark":
+                getWindow().getDecorView().setBackgroundColor(getResources().
+                        getColor(R.color.accent_bronze));
+                break;
+            case "System Default":
+                getWindow().getDecorView().setBackgroundColor(getResources().
+                        getColor(R.color.primary_blue_light));
+                break;
+        }
     }
 
     private void loadTodayLessons() {
@@ -292,10 +310,10 @@ public class DashboardActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         tvTimerDisplay = findViewById(R.id.tvTimerDisplay);
         btnStartTimer = findViewById(R.id.btnStartTimer);
-        navHome = findViewById(R.id.navHome);
+        navSetting = findViewById(R.id.navSettings);
         navTasks = findViewById(R.id.navTasks);
         navTimer = findViewById(R.id.navTimer);
-        navAdd = findViewById(R.id.navAdd);
+        navLichHoc = findViewById(R.id.navLichHoc);
         tvTaskProgress = findViewById(R.id.tvTaskProgress);
 
         tvTaskTitle1 = findViewById(R.id.task_title_1);
@@ -322,7 +340,6 @@ public class DashboardActivity extends AppCompatActivity {
         String currentDate = dateFormat.format(new Date());
         tvDate.setText("Today's Date: " + currentDate);
     }
-
     private void setupClickListeners() {
         btnStartTimer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -335,37 +352,38 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        navHome.setOnClickListener(new View.OnClickListener() {
+        navSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "Bạn đang ở trang chủ", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DashboardActivity.this, SettingActivity.class);
+                startActivity(intent);
             }
         });
 
         navTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "Chuyển đến quản lý nhiệm vụ", Toast.LENGTH_SHORT).show();
-
+               Intent intent = new Intent(DashboardActivity.this, ManagerTaskActivity.class);
+                startActivity(intent);
             }
         });
         navTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "Chuyển đến màn hình Pomodoro Timer", Toast.LENGTH_SHORT).show();
-                // TODO: Implement timer screen navigation
+               Intent intent = new Intent(DashboardActivity.this, PromodoroActivity.class);
+                startActivity(intent);
             }
         });
 
-        navAdd.setOnClickListener(new View.OnClickListener() {
+        navLichHoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent (DashboardActivity.this, AddTaskActivity.class);
+               Intent intent = new Intent (DashboardActivity.this, LichHocActivity.class);
                 startActivity(intent);
+                finish();
                 }
         });
 
-        // Task checkbox clicks
         if (findViewById(R.id.checkboxTask1) != null) {
             findViewById(R.id.checkboxTask1).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -498,12 +516,10 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void showPopupMenu(View anchorView) {
-        // Tạo dialog cho popup menu
         popupDialog = new Dialog(this);
         popupDialog.setContentView(R.layout.popup_menu);
         popupDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        // Tìm và thiết lập sự kiện cho các mục menu
         LinearLayout btnBackupRestore = popupDialog.findViewById(R.id.btnBackupRestore);
         LinearLayout btnProfile = popupDialog.findViewById(R.id.btnProfile);
         LinearLayout btnNotifications = popupDialog.findViewById(R.id.btnNotifications);
@@ -516,7 +532,6 @@ public class DashboardActivity extends AppCompatActivity {
                 popupDialog.dismiss();
             }
         });
-
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -533,7 +548,6 @@ public class DashboardActivity extends AppCompatActivity {
                 popupDialog.dismiss();
             }
         });
-
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -541,7 +555,6 @@ public class DashboardActivity extends AppCompatActivity {
                 popupDialog.dismiss();
             }
         });
-
         // Hiển thị dialog
         popupDialog.show();
     }
