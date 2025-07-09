@@ -30,6 +30,23 @@
             android:exported="false" />
         <activity android:name=".ProfileActivity"
             android:exported="false" />
+        <activity android:name=".ManagerTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BackupRestoreActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SettingActivity"
+            android:exported="false" />
+        <activity android:name=".AboutAppActivity"
+            android:exported="false" />
+        <activity android:name=".LichHocActivity"
+            android:exported="false" />
+        <activity android:name=".ThongBaoActivity"
+            android:exported="false" />
+        <activity android:name=".PromodoroActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
