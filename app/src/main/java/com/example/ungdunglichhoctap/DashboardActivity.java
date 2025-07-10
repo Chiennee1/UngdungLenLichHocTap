@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +30,7 @@ import java.util.Locale;
 import DoiTuong.Lessons;
 import DoiTuong.Task;
 import DoiTuong.User;
+import XulyObject.FirebaseManager;
 
 public class DashboardActivity extends AppCompatActivity {
     private TextView tvTaskTitle1, tvTaskDueDate1;
@@ -113,7 +115,19 @@ public class DashboardActivity extends AppCompatActivity {
         java.util.Collections.sort(lessons, new java.util.Comparator<Lessons>() {
             @Override
             public int compare(Lessons lesson1, Lessons lesson2) {
-                return Long.compare(lesson1.getThoiGianBatDau(), lesson2.getThoiGianBatDau());
+                Long time1 = lesson1.getThoiGianBatDau();
+                Long time2 = lesson2.getThoiGianBatDau();
+
+                if (time1 == null && time2 == null) {
+                    return 0;
+                }
+                if (time1 == null) {
+                    return 1;
+                }
+                if (time2 == null) {
+                    return -1;
+                }
+                return Long.compare(time1, time2);
             }
         });
         hideAllLessonViews();
@@ -183,7 +197,8 @@ public class DashboardActivity extends AppCompatActivity {
         long startOfDay = getStartOfDay();
         long endOfDay = getEndOfDay();
         for(Task task : dataResult) {
-            if (task.getThoiGianTao() >= startOfDay && task.getThoiGianTao() <= endOfDay) {
+            if (task.getThoiGianTao() >= startOfDay
+                    && task.getThoiGianTao() <= endOfDay) {
                 todayTasks.add(task);
             }
         }
@@ -191,26 +206,34 @@ public class DashboardActivity extends AppCompatActivity {
     }
     private List<Task> filterTasksByDueDate(List<Task> allTasks) {
         // Sort tasks by due date
-        java.util.Collections.sort(allTasks, new java.util.Comparator<Task>() {
+        Collections.sort(allTasks, new Comparator<Task>() { // Đây là DashboardActivity$4 trong stack trace
             @Override
-            public int compare(Task task1, Task task2) {
-                return Long.compare(task1.getThoiGianHoanThanh(), task2.getThoiGianHoanThanh());
+            public int compare(Task task1, Task task2) { // Dòng 207 (bắt đầu của compare)
+                Long time1 = task1.getThoiGianHoanThanh();
+                Long time2 = task2.getThoiGianHoanThanh();
+
+                if (time1 == null && time2 == null) {
+                    return 0;
+                }
+                if (time1 == null) {
+                    return -1;
+                }
+                if (time2 == null) {
+                    return 1;
+                }
+                return time1.compareTo(time2);
             }
         });
 
-        // Get tasks that are not completed and due soon
         List<Task> upcomingTasks = new ArrayList<>();
         for (Task task : allTasks) {
             if (!task.isDaHoanThanh()) {
                 upcomingTasks.add(task);
             }
-
-            // Only take the first 2 upcoming tasks
             if (upcomingTasks.size() >= 2) {
                 break;
             }
         }
-
         return upcomingTasks;
     }
 
@@ -243,27 +266,39 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void displayTask(Task task, TextView titleView, TextView dueDateView) {
-        // Get parent to make visible
         View parent = (View) titleView.getParent().getParent().getParent();
         parent.setVisibility(View.VISIBLE);
 
         // Set title
         titleView.setText(task.getTieuDe());
-
-        // Format and set due date
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd", Locale.getDefault());
-        String formattedDate = dateFormat.format(new Date(task.getThoiGianHoanThanh()));
-        dueDateView.setText("Due: " + formattedDate);
 
-        // Set color based on urgency
-        long currentTime = System.currentTimeMillis();
-        long oneDay = 24 * 60 * 60 * 1000;
+        Long dueTimestamp = task.getHanChot(); // Đây là dòng quan trọng
 
-        if (task.getThoiGianHoanThanh() - currentTime < oneDay) {
-            dueDateView.setTextColor(getResources().getColor(R.color.accent_red));
-        } else if (task.getThoiGianHoanThanh() - currentTime < 3 * oneDay) {
-            dueDateView.setTextColor(getResources().getColor(R.color.accent_orange));
+        if (dueTimestamp != null) {
+            String formattedDate = dateFormat.format(new Date(dueTimestamp));
+            dueDateView.setText("Due: " + formattedDate);
+
+            // Set color based on urgency
+            long currentTime = System.currentTimeMillis();
+            long oneDay = 24 * 60 * 60 * 1000; // 24 giờ tính bằng mili giây
+
+            // Giả sử getThoiGianHoanThanhTimestamp() cũng có thể là null, cần kiểm tra
+            Long thoiGianHoanThanhTimestamp = task.getThoiGianHoanThanh();
+            if (thoiGianHoanThanhTimestamp != null) {
+                if (thoiGianHoanThanhTimestamp - currentTime < oneDay) {
+                    dueDateView.setTextColor(getResources().getColor(R.color.accent_red));
+                } else if (thoiGianHoanThanhTimestamp - currentTime < 3 * oneDay) {
+                    dueDateView.setTextColor(getResources().getColor(R.color.accent_orange));
+                } else {
+                    dueDateView.setTextColor(getResources().getColor(R.color.text_secondary));
+                }
+            } else {
+                dueDateView.setTextColor(getResources().getColor(R.color.text_secondary));
+            }
+
         } else {
+            dueDateView.setText("No due date set");
             dueDateView.setTextColor(getResources().getColor(R.color.text_secondary));
         }
     }
@@ -277,7 +312,6 @@ public class DashboardActivity extends AppCompatActivity {
                 completedTasks++;
             }
         }
-
         // Update progress text view
         tvTaskProgress.setText(completedTasks + "/" + totalTasks);
 

@@ -39,6 +39,8 @@
     <color name="accent_silver">#C0C0C0</color>
     <color name="accent_bronze">#CD7F32</color>
 
+    <!-- Achievement badge colors -->
+    <color name="accent_gold_light">#FFF8E1</color>
     <!-- Ripple Effect Color -->
     <color name="ripple_color">#FFD700</color>
 </resources>
