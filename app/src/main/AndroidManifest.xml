@@ -18,7 +18,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,8 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".BackupRestoreActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity android:name=".SettingActivity"
             android:exported="false" />
         <activity android:name=".AboutAppActivity"
@@ -45,6 +43,8 @@
         <activity android:name=".ThongBaoActivity"
             android:exported="false" />
         <activity android:name=".PromodoroActivity"
+            android:exported="false" />
+        <activity android:name=".AddLessonActivity"
             android:exported="false" />
 
     </application>

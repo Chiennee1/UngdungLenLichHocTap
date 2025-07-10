@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,22 +26,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import DoiTuong.Task;
+import XulyObject.TaskAdapter;
 
-public class ManagerTaskActivity extends AppCompatActivity {
+public class ManagerTaskActivity extends AppCompatActivity implements TaskAdapter.onTaskClickListener {
     private static final String TAG = "ManagerTaskActivity";
 
     // UI elements
     private Button btnAllTasks, btnToday, btnCompleted, btnAddTask;
     private TextView btnBack, btnMenu;
-    private LinearLayout navHome, navCalendar, navHoSo;
-
+    private LinearLayout navHome, navCalendar, navPromodo,navHoSo;
+    private TaskAdapter taskAdapter;
+    private RecyclerView rvTasks;
     // Firebase
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference tasksRef;
 
-    // Task data
     private List<Task> taskList;
+    private List<Task> filteredTaskList;
     private String currentFilter = "all";
 
     @Override
@@ -51,20 +55,25 @@ public class ManagerTaskActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
 
         if (currentUser == null) {
-            // Nếu người dùng chưa đăng nhập, chuyển hướng đến màn hình đăng nhập
             Intent intent = new Intent(this, SiginActivity.class); // Thay DashboardActivity bằng màn hình đăng nhập
             startActivity(intent);
             finish();
             return;
         }
-
-        // Nếu người dùng đã đăng nhập, tiếp tục khởi tạo
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         tasksRef = database.getReference("users").child(currentUser.getUid()).child("tasks");
 
         initializeViews();
+        setUpRecyclerView();
         setupClickListeners();
         loadTasksFromFirebase();
+
+    }
+
+    private void setUpRecyclerView() {
+        taskAdapter = new TaskAdapter(filteredTaskList,this, this);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
+        rvTasks.setAdapter(taskAdapter);
     }
 
     private void initializeViews() {
@@ -79,8 +88,11 @@ public class ManagerTaskActivity extends AppCompatActivity {
         navHome = findViewById(R.id.navHome);
         navCalendar = findViewById(R.id.navCalendar);
         navHoSo = findViewById(R.id.navHoSo);
-
+        navPromodo = findViewById(R.id.navPomodoro);
         taskList = new ArrayList<>();
+        filteredTaskList = new ArrayList<>();
+        rvTasks = findViewById(R.id.rvTasks);
+        updateFilterButtonsUI(btnAllTasks);
     }
 
     private void setupClickListeners() {
@@ -172,6 +184,15 @@ public class ManagerTaskActivity extends AppCompatActivity {
                 finish();
             }
         });
+        navPromodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Pomodoro
+                Intent intent = new Intent(ManagerTaskActivity.this, PromodoroActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void updateFilterButtonsUI(Button activeButton) {
@@ -206,7 +227,6 @@ public class ManagerTaskActivity extends AppCompatActivity {
                         Log.e(TAG, "Error parsing task: " + e.getMessage());
                     }
                 }
-
                 // Filter tasks based on current filter
                 filterTasks();
             }
@@ -239,7 +259,8 @@ public class ManagerTaskActivity extends AppCompatActivity {
                 long todayMillis = today.getTimeInMillis();
 
                 for (Task task : taskList) {
-                    if (!task.isDaHoanThanh() && task.getHanChot() >= todayMillis) {
+                    if (!task.isDaHoanThanh() && task.getHanChot() !=
+                            null && task.getHanChot()> todayMillis) {
                         filteredList.add(task);
                     }
                 }
@@ -254,7 +275,6 @@ public class ManagerTaskActivity extends AppCompatActivity {
                 }
                 break;
         }
-
         // Update UI with filtered tasks
         updateTaskUI(filteredList);
     }
@@ -262,12 +282,24 @@ public class ManagerTaskActivity extends AppCompatActivity {
     private void updateTaskUI(List<Task> filteredTasks) {
 
         Log.d(TAG, "Displaying " + filteredTasks.size() + " tasks with filter: " + currentFilter);
-
+        filteredTaskList.clear();
+        filteredTaskList.addAll(filteredTasks);
+        // Thông báo cho adapter cập nhật giao diện
+        taskAdapter.notifyDataSetChanged();
         for (Task task : filteredTasks) {
             Log.d(TAG, task.toString());
         }
 
-        // TODO: Implement RecyclerView adapter for task display
     }
 
+     @Override
+    public void onTaskClick(Task task, int position) {
+        Toast.makeText(this, "Clicked on task: " + task.getTieuDe(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadTasksFromFirebase();
+    }
 }

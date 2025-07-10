@@ -58,4 +58,11 @@
     <string name="logout_account">Thoát khỏi tài khoản Chiennee1</string>
     <string name="app_version_footer">StudyMate v1.0.0</string>
     <string name="app_copyright">Build 2025.07.02 - © StudyMate Team</string>
+
+    <string-array name="lesson_types">
+        <item>Lý thuyết</item>
+        <item>Thực hành</item>
+        <item>Seminar</item>
+        <item>Bài tập</item>
+    </string-array>
 </resources>

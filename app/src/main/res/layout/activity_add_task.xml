@@ -61,43 +61,43 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
+                android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="@color/background_white"
-                android:layout_marginBottom="20dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/common_google_signin_btn_icon_disabled"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="📷"
-                        android:textSize="32sp"
-                        android:layout_marginBottom="8dp" />
+                        android:textSize="32sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:text="Thêm hình ảnh cho nhiệm vụ"
-                        android:textSize="14sp"
                         android:textColor="@color/text_secondary"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="4dp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nhấn để chọn ảnh từ thư viện"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_hint" />
+                        android:textColor="@color/text_hint"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -106,23 +106,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Tiêu Đề Nhiệm vụ"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/primary_blue"
                 app:boxStrokeWidth="1dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
                 app:hintTextColor="@color/text_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -131,56 +131,77 @@
                     android:layout_height="wrap_content"
                     android:hint="Nhập tiêu đề công việc của bạn..."
                     android:inputType="textCapSentences"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_primary"
+                    android:maxLines="2"
                     android:paddingVertical="16dp"
-                    android:maxLines="2" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Môn Học"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSubjectName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chọn môn học của bạn"
-                android:textSize="12sp"
-                android:textColor="@color/text_hint"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="20dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeColor="@color/primary_blue"
+                app:boxStrokeWidth="1dp"
+                app:hintTextColor="@color/text_hint">
+
+                <AutoCompleteTextView
+                    android:id="@+id/etSubjectName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Chọn hoặc nhập tên môn học"
+                    android:inputType="text"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:completionThreshold="1"
+                    android:contentDescription="Chọn môn học"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/chipGiaiTich"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/primary_blue"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/primary_blue"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:paddingHorizontal="16dp"
                         android:text="Giải tích"
-                        android:textSize="12sp"
+                        android:gravity="center"
                         android:textColor="@color/text_white"
-                        android:textStyle="bold"
-                        android:paddingHorizontal="16dp" />
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -188,22 +209,22 @@
                     android:id="@+id/chipMobile"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/background_white"
-                    app:cardPreventCornerOverlap="false"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:cardPreventCornerOverlap="false">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:paddingHorizontal="16dp"
                         android:text="Lập trình Mobile"
-                        android:textSize="12sp"
                         android:textColor="@color/text_secondary"
-                        android:paddingHorizontal="16dp" />
+                        android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -211,20 +232,20 @@
                     android:id="@+id/chipQuanTri"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/background_white"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:paddingHorizontal="16dp"
                         android:text="Quản trị mạng"
-                        android:textSize="12sp"
                         android:textColor="@color/text_secondary"
-                        android:paddingHorizontal="16dp" />
+                        android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -233,52 +254,52 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Ngày Và Giờ Hạn"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="Chọn ngày và giờ để hoàn thành nhiệm vụ"
-                android:textSize="12sp"
                 android:textColor="@color/text_hint"
-                android:layout_marginBottom="12dp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnDatePicker"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/background_white"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center_vertical"
+                        android:orientation="horizontal"
                         android:paddingHorizontal="16dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
                             android:text="📅"
-                            android:textSize="18sp"
-                            android:layout_marginEnd="8dp" />
+                            android:textSize="18sp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -290,16 +311,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Ngày"
-                                android:textSize="10sp"
-                                android:textColor="@color/text_hint" />
+                                android:textColor="@color/text_hint"
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tvSelectedDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Chọn ngày"
-                                android:textSize="14sp"
                                 android:textColor="@color/text_primary"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -312,28 +333,28 @@
                     android:id="@+id/btnTimePicker"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/background_white"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center_vertical"
+                        android:orientation="horizontal"
                         android:paddingHorizontal="16dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
                             android:text="⏰"
-                            android:textSize="18sp"
-                            android:layout_marginEnd="8dp" />
+                            android:textSize="18sp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -345,16 +366,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Giờ"
-                                android:textSize="10sp"
-                                android:textColor="@color/text_hint" />
+                                android:textColor="@color/text_hint"
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/tvSelectedTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Chọn giờ"
-                                android:textSize="14sp"
                                 android:textColor="@color/text_primary"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -368,58 +389,58 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Mức Độ Ưu Tiên"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="Chọn mức độ ưu tiên"
-                android:textSize="12sp"
                 android:textColor="@color/text_hint"
-                android:layout_marginBottom="12dp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/chipHigh"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/accent_red_light"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/accent_red_light"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:text="🔴"
-                            android:textSize="16sp"
-                            android:layout_marginBottom="2dp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cao"
-                            android:textSize="12sp"
                             android:textColor="@color/accent_red"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -430,34 +451,34 @@
                     android:id="@+id/chipMedium"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/accent_orange_light"
                     android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/accent_orange_light"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:text="🟡"
-                            android:textSize="16sp"
-                            android:layout_marginBottom="2dp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Trung Bình"
-                            android:textSize="12sp"
                             android:textColor="@color/accent_orange"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -468,34 +489,34 @@
                     android:id="@+id/chipLow"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/accent_green_light"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/accent_green_light"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:text="🟢"
-                            android:textSize="16sp"
-                            android:layout_marginBottom="2dp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Thấp"
-                            android:textSize="12sp"
                             android:textColor="@color/accent_green"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -507,37 +528,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Mô Tả Chi Tiết (Tùy chọn)"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/primary_blue"
                 app:boxStrokeWidth="1dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
                 app:hintTextColor="@color/text_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etTaskDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="top"
                     android:hint="Thêm mô tả chi tiết về nhiệm vụ..."
                     android:inputType="textMultiLine|textCapSentences"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_primary"
-                    android:paddingVertical="16dp"
-                    android:minLines="3"
                     android:maxLines="5"
-                    android:gravity="top" />
+                    android:minLines="3"
+                    android:paddingVertical="16dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

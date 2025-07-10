@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 
+import XulyObject.FirebaseManager;
+
 public class BackupRestoreActivity extends AppCompatActivity {
     private TextView btnBack;
     private TextView btnHelp;

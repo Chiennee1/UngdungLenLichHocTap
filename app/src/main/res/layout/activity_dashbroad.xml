@@ -712,14 +712,6 @@
             android:focusable="true"
             android:padding="8dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/primary_blue"
-                android:layout_marginBottom="4dp">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -730,7 +722,6 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import XulyObject.FirebaseManager;
+
 public class SettingActivity extends AppCompatActivity {
 
     private TextView btnBack;
@@ -37,15 +39,17 @@ public class SettingActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
         layoutNotificationSettings.setOnClickListener(v -> {
             Intent intent = new Intent(SettingActivity.this, ThongBaoActivity.class);
-            Toast.makeText(SettingActivity.this, "Chức năng này đang được phát triển", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingActivity.this, "Chuyển sang màn hình thông báo", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         });
         layoutAboutApp.setOnClickListener(v -> {
             Intent intent = new Intent(SettingActivity.this, AboutAppActivity.class);
+            Toast.makeText(SettingActivity.this, "Chuyển sang màn hình thông tin app",Toast.LENGTH_SHORT).show();
             startActivity(intent);
         });
         layoutBackupRestore.setOnClickListener(v -> {
             Intent intent = new Intent(SettingActivity.this, BackupRestoreActivity.class);
+            Toast.makeText(SettingActivity.this, "Chuyển sang màn hình Backup and Restore!", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         });
         layoutLogout.setOnClickListener(v -> logoutUser());

@@ -1,42 +1,61 @@
 package DoiTuong;
 
 import com.google.firebase.database.Exclude;
-import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.PropertyName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-@IgnoreExtraProperties
-public class Task {
-    @Exclude
-    public String maNhiemVu;
-
-    public String tieuDe;
-    public String moTa;
-    public long hanChot;
-    public String mucDoUuTien;
-    public boolean daHoanThanh;
-    public String maMonHoc;
-    public long thoiGianTao;
-    public long thoiGianHoanThanh;
-    public String hinhAnh;
+public class Task implements Serializable {
+    private String maNhiemVu;
+    private String tieuDe;
+    private String moTa;
+    private String tenMonHoc;
+    private String mucDoUuTien;
+    private Long hanChot;
+    private Long thoiGianTao;
+    private Long thoiGianHoanThanh;
+    private boolean daHoanThanh;
 
     public Task() {
         this.thoiGianTao = System.currentTimeMillis();
-        this.daHoanThanh = false;
     }
 
-    public Task(String tieuDe, String moTa, long hanChot, String mucDoUuTien, String maMonHoc) {
+    public Task(String maNhiemVu, String tieuDe, String moTa, String tenMonHoc, String mucDoUuTien, Date hanChot) {
+        this.maNhiemVu = maNhiemVu;
         this.tieuDe = tieuDe;
         this.moTa = moTa;
-        this.hanChot = hanChot;
+        this.tenMonHoc = tenMonHoc;
         this.mucDoUuTien = mucDoUuTien;
-        this.maMonHoc = maMonHoc;
-        this.daHoanThanh = false;
+        this.hanChot = hanChot != null ? hanChot.getTime() : null;
         this.thoiGianTao = System.currentTimeMillis();
+        this.daHoanThanh = false;
     }
 
-    // Getters and Setters
-    @Exclude
+    public Long getHanChot() {
+        return hanChot;
+    }
+
+    public void setHanChot(Long hanChot) {
+        this.hanChot = hanChot;
+    }
+
+    public Long getThoiGianHoanThanh() {
+        return thoiGianHoanThanh;
+    }
+
+    public void setThoiGianHoanThanh(Long thoiGianHoanThanh) {
+        this.thoiGianHoanThanh = thoiGianHoanThanh;
+    }
+
+    public Long getThoiGianTao() {
+        return thoiGianTao;
+    }
+
+    public void setThoiGianTao(Long thoiGianTao) {
+        this.thoiGianTao = thoiGianTao;
+    }
+
     public String getMaNhiemVu() {
         return maNhiemVu;
     }
@@ -61,12 +80,12 @@ public class Task {
         this.moTa = moTa;
     }
 
-    public long getHanChot() {
-        return hanChot;
+    public String getTenMonHoc() {
+        return tenMonHoc;
     }
 
-    public void setHanChot(long hanChot) {
-        this.hanChot = hanChot;
+    public void setTenMonHoc(String tenMonHoc) {
+        this.tenMonHoc = tenMonHoc;
     }
 
     public String getMucDoUuTien() {
@@ -83,57 +102,23 @@ public class Task {
 
     public void setDaHoanThanh(boolean daHoanThanh) {
         this.daHoanThanh = daHoanThanh;
+        if (daHoanThanh) {
+            this.thoiGianHoanThanh = System.currentTimeMillis();
+        } else {
+            this.thoiGianHoanThanh = null;
+        }
     }
 
-    public String getMaMonHoc() {
-        return maMonHoc;
-    }
-
-    public void setMaMonHoc(String maMonHoc) {
-        this.maMonHoc = maMonHoc;
-    }
-
-    public long getThoiGianTao() {
-        return thoiGianTao;
-    }
-
-    public void setThoiGianTao(long thoiGianTao) {
-        this.thoiGianTao = thoiGianTao;
-    }
-
-    public long getThoiGianHoanThanh() {
-        return thoiGianHoanThanh;
-    }
-
-    public void setThoiGianHoanThanh(long thoiGianHoanThanh) {
-        this.thoiGianHoanThanh = thoiGianHoanThanh;
-    }
-
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
-
-    @Exclude
-    public boolean isQuaHan() {
-        return !daHoanThanh && System.currentTimeMillis() > hanChot;
-    }
-    @Exclude
-    public Date getNgayHanChot() {
-        return new Date(hanChot);
-    }
     @Override
     public String toString() {
         return "Task{" +
                 "maNhiemVu='" + maNhiemVu + '\'' +
                 ", tieuDe='" + tieuDe + '\'' +
-                ", hanChot=" + new Date(hanChot) +
+                ", moTa='" + moTa + '\'' +
+                ", tenMonHoc='" + tenMonHoc + '\'' +
                 ", mucDoUuTien='" + mucDoUuTien + '\'' +
+                ", hanChot=" + getHanChot() +
                 ", daHoanThanh=" + daHoanThanh +
-                ", maMonHoc='" + maMonHoc + '\'' +
                 '}';
     }
 }

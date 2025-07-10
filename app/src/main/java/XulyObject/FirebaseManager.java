@@ -1,4 +1,4 @@
-package com.example.ungdunglichhoctap;
+package XulyObject;
 
 import android.widget.Button;
 
@@ -11,9 +11,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import DoiTuong.User;
 import DoiTuong.Lessons;
@@ -29,6 +30,80 @@ public class FirebaseManager {
     private final DatabaseReference databaseReference;
     private final FirebaseAuth mAuth;
     private final String userId;
+
+    public void backupData(String uid, DatabaseCallback<Boolean> backupCallback) {
+        if(uid == null || uid.isEmpty()) {
+            backupCallback.onError("User ID is null or empty");
+            return;
+        }
+        DatabaseReference backupRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        backupRef.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                DataSnapshot dataSnapshot = task.getResult();
+                if(dataSnapshot.exists()) {
+                    try {
+                        Map<String, Objects> userData = (Map<String, Objects>) dataSnapshot.getValue();
+                        String backupData = new Gson().toJson(userData);
+                        String backupName = "backup_" + System.currentTimeMillis();
+                        DatabaseReference backupStorageRef = FirebaseDatabase.getInstance()
+                                .getReference("backups").child(uid).child(backupName);
+                        backupStorageRef.setValue(userData)
+                                .addOnSuccessListener(aVoid -> backupCallback.onSucces( true))
+                                .addOnFailureListener(e -> backupCallback.onError("Failed to save backup: " + e.getMessage()));
+                    }catch (Exception ex){
+                        backupCallback.onError("Error converting data to JSON: " + ex.getMessage());
+                    }
+                } else {
+                    backupCallback.onError("No data found for user ID: " + uid);
+                }
+            } else {
+                backupCallback.onError("Failed to retrieve data: " + task.getException().getMessage());
+            }
+        });
+
+
+    }
+
+    public void restoreData(String uid, DatabaseCallback<Boolean> databaseCallback) {
+        if(uid == null || uid.isEmpty()) {
+            databaseCallback.onError("User ID is null or empty");
+            return;
+        }
+        DatabaseReference backupRef = FirebaseDatabase.getInstance().
+                getReference("backups").child(uid);
+        backupRef.orderByChild("timestamp")
+                .limitToLast(1).get()
+                .addOnCompleteListener(task -> {
+                    if(task != null){
+                        DataSnapshot dataSnapshot = task.getResult();
+                        if(dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0 ){
+                            try {
+                             DataSnapshot lastBackupData = dataSnapshot.getChildren().iterator().next();
+                             String jsData = lastBackupData.child("data").getValue(String.class);
+                                if(jsData != null) {
+                                    Map<String, Objects> userData = new Gson().fromJson(jsData, Map.class);
+                                    DatabaseReference userRef = FirebaseDatabase.getInstance()
+                                            .getReference("users").child(uid);
+                                    userRef.setValue(userData)
+                                            .addOnSuccessListener(aVoid -> databaseCallback.onSucces(true))
+                                            .addOnFailureListener(e -> databaseCallback.onError("Failed to restore data: " + e.getMessage()));
+                                } else {
+                                    databaseCallback.onError("No backup data found");
+                                }
+
+                            }catch (Exception ex){
+                                databaseCallback.onError("Error converting data to JSON: " + ex.getMessage());
+                                return;
+                            }
+                        }else{
+                            databaseCallback.onError("No backup data found for user ID: " + uid);
+                        }
+                    }else{
+                        databaseCallback.onError("Failed to retrieve backup data: " + task.getException().getMessage());
+                    }
+
+                });
+    }
 
     public interface DatabaseCallback<T> {
         void onSucces(T dataResult);

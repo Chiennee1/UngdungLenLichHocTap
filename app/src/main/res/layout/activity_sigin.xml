@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/dangnhap"
+            android:paddingTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -89,14 +90,6 @@
                         android:textColor="@color/text_secondary"
                         android:layout_marginBottom="2dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Đăng nhập để tiếp tục"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginBottom="16dp"
-                        android:gravity="center" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
