@@ -46,7 +46,6 @@ public class SiginActivity extends AppCompatActivity {
                 edt_Password.setText(bundle.getString("password"));
             }
         }
-        String email = "";
         btn_SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +72,7 @@ public class SiginActivity extends AppCompatActivity {
                 // Chuyển đến Activity quên mật khẩu
             }
         });
+
     }
 
     private void XulyDangNhapVoiGoogle() {

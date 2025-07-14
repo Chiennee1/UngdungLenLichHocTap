@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,6 +75,28 @@ public class ManagerTaskActivity extends AppCompatActivity implements TaskAdapte
         taskAdapter = new TaskAdapter(filteredTaskList,this, this);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         rvTasks.setAdapter(taskAdapter);
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(
+                0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && position < filteredTaskList.size()) {
+                    Task task = filteredTaskList.get(position);
+                    onTaskDelete(task, position);
+                    // Restore the view since we're showing a confirmation dialog
+                    taskAdapter.notifyItemChanged(position);
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(rvTasks);
     }
 
     private void initializeViews() {
@@ -205,8 +228,7 @@ public class ManagerTaskActivity extends AppCompatActivity implements TaskAdapte
         btnCompleted.setBackgroundTintList(getColorStateList(android.R.color.transparent));
         btnCompleted.setTextColor(getResources().getColor(R.color.text_secondary));
 
-        // Highlight the active button
-        activeButton.setBackgroundTintList(getColorStateList(R.color.primary_blue));
+        activeButton.setBackgroundTintList(getColorStateList(R.color.primary_blue_light));
         activeButton.setTextColor(getResources().getColor(R.color.text_white));
     }
 
@@ -295,6 +317,68 @@ public class ManagerTaskActivity extends AppCompatActivity implements TaskAdapte
      @Override
     public void onTaskClick(Task task, int position) {
         Toast.makeText(this, "Clicked on task: " + task.getTieuDe(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTaskComplete(Task task, int position) {
+        task.setDaHoanThanh(!task.isDaHoanThanh());
+        taskAdapter.notifyItemChanged(position);
+
+        // Then update Firebase
+        tasksRef.child(task.getMaNhiemVu()).child("daHoanThanh").setValue(task.isDaHoanThanh())
+                .addOnSuccessListener(aVoid -> {
+                    if (task.isDaHoanThanh()) {
+                        tasksRef.child(task.getMaNhiemVu()).child("thoiGianHoanThanh")
+                                .setValue(System.currentTimeMillis());
+                        Toast.makeText(this, "Đã đánh dấu hoàn thành", Toast.LENGTH_SHORT).show();
+                    } else {
+                        tasksRef.child(task.getMaNhiemVu()).child("thoiGianHoanThanh")
+                                .setValue(null);
+                        Toast.makeText(this, "Đã bỏ đánh dấu hoàn thành", Toast.LENGTH_SHORT).show();
+                    }
+                    filterTasks();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error updating task completion status: " + e.getMessage());
+                    // Revert the local change since the update failed
+                    task.setDaHoanThanh(!task.isDaHoanThanh());
+                    taskAdapter.notifyItemChanged(position);
+                });
+    }
+
+    @Override
+    public void onTaskDelete(Task task, int position) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Xác nhận xóa")
+                .setMessage("Bạn có chắc chắn muốn xóa nhiệm vụ \"" + task.getTieuDe() + "\"?")
+                .setPositiveButton("Xóa", (dialog, which) -> {
+                    // Delete from Firebase
+                    if (task.getMaNhiemVu() != null) {
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if (currentUser != null) {
+                            DatabaseReference taskRef = FirebaseDatabase.getInstance()
+                                    .getReference("users")
+                                    .child(currentUser.getUid())
+                                    .child("tasks")
+                                    .child(task.getMaNhiemVu());
+
+                            taskRef.removeValue()
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(ManagerTaskActivity.this,
+                                                "Đã xóa nhiệm vụ", Toast.LENGTH_SHORT).show();
+                                        // The adapter will be updated automatically via the Firebase listener
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(ManagerTaskActivity.this,
+                                                "Lỗi khi xóa: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.e(TAG, "Error deleting task: " + e.getMessage());
+                                    });
+                        }
+                    }
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
     }
 
     @Override

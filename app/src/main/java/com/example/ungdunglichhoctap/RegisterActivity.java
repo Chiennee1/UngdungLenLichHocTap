@@ -29,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnDangKy, btnGoogleSignUp;
     private EditText edtEmail, edtPassword, edtConfirmPassword;
     TextView txtDangNhap;
+    private TextView btnBack;
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001; // Request code for Google Sign-In
     private GoogleSignInClient mGoogleSignInClient;
@@ -44,7 +45,13 @@ public class RegisterActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.etPassword);
         edtConfirmPassword = findViewById(R.id.etConfirmPassword);
         txtDangNhap = findViewById(R.id.tvLogin);
+        btnBack = findViewById(R.id.btnBack);
 
+
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, SiginActivity.class);
+            startActivity(intent);
+        });
         btnDangKy.setOnClickListener(v -> XulyDangKy());
         btnGoogleSignUp.setOnClickListener(v -> {
             XulyDangKyGoogle();

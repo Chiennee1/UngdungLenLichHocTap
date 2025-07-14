@@ -245,7 +245,7 @@
                                 android:text="Phòng 21"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/primary_blue" />
+                                android:textColor="@color/background_white" />
 
                         </androidx.cardview.widget.CardView>
 

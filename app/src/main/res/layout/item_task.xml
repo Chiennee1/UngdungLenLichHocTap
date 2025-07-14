@@ -15,6 +15,14 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
+        <!-- Complete Task Checkbox -->
+        <CheckBox
+            android:id="@+id/cbCompleteTask"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:buttonTint="@color/primary_blue" />
+
         <!-- Task Icon -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cvTaskIcon"
@@ -107,6 +115,17 @@
                 android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
+
+        <!-- Delete Button -->
+        <ImageButton
+            android:id="@+id/btnDeleteTask"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            android:tint="@color/text_secondary"
+            android:contentDescription="Xóa nhiệm vụ" />
 
     </LinearLayout>
 

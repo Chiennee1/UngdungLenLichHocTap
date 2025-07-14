@@ -206,9 +206,9 @@ public class DashboardActivity extends AppCompatActivity {
     }
     private List<Task> filterTasksByDueDate(List<Task> allTasks) {
         // Sort tasks by due date
-        Collections.sort(allTasks, new Comparator<Task>() { // Đây là DashboardActivity$4 trong stack trace
+        Collections.sort(allTasks, new Comparator<Task>() {
             @Override
-            public int compare(Task task1, Task task2) { // Dòng 207 (bắt đầu của compare)
+            public int compare(Task task1, Task task2) {
                 Long time1 = task1.getThoiGianHoanThanh();
                 Long time2 = task2.getThoiGianHoanThanh();
 

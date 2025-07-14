@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public interface onTaskClickListener {
         void onTaskClick(Task task, int position);
+        void onTaskComplete(Task task, int position);
+        void onTaskDelete(Task task, int position);
     }
 
     public TaskAdapter(List<Task> taskList, Context context, onTaskClickListener onTaskClickListener) {
@@ -49,6 +52,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task task = taskList.get(position);
         holder.tvTaskTitle.setText(task.getTieuDe());
         holder.tvSubjectName.setText(task.getTenMonHoc());
+        if (holder.cbCompleteTask instanceof CheckBox) {
+            ((CheckBox) holder.cbCompleteTask).setChecked(task.isDaHoanThanh());
+        }
         if(task.getHanChot() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             String dueTime = sdf.format(new Date(task.getHanChot()));
@@ -94,6 +100,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 onTaskClickListener.onTaskClick(task, position);
             }
         });
+        holder.cbCompleteTask.setOnClickListener(v -> {
+            if (onTaskClickListener != null) {
+                onTaskClickListener.onTaskComplete(task, holder.getAdapterPosition());
+            }
+        });
+
+        holder.btnDeleteTask.setOnClickListener(v -> {
+            if (onTaskClickListener != null) {
+                onTaskClickListener.onTaskDelete(task, holder.getAdapterPosition());
+            }
+        });
+
     }
 
     @Override
@@ -105,6 +123,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         notifyDataSetChanged();
     }
     static class TaskViewHolder extends RecyclerView.ViewHolder {
+        public CheckBox cbCompleteTask;
+        public View btnDeleteTask;
         TextView tvTaskTitle, tvSubjectName, tvDueDate;
         CardView cvPriority, cvTaskStatus;
         public TaskViewHolder(@NonNull View parent) {
@@ -114,6 +134,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             tvDueDate = itemView.findViewById(R.id.tvDueDate);
             cvPriority = itemView.findViewById(R.id.cvPriority);
             cvTaskStatus = itemView.findViewById(R.id.cvTaskIcon);
+            btnDeleteTask = itemView.findViewById(R.id.btnDeleteTask);
+            cbCompleteTask = itemView.findViewById(R.id.cbCompleteTask);
         }
     }
 }

@@ -54,7 +54,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     // Picasso for image loading
     implementation("com.squareup.picasso:picasso:2.8")
-
+    implementation(libs.cardview)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
